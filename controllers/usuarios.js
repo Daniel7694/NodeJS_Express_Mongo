@@ -1,5 +1,5 @@
 const express = require('express');
-const Curso = require('../models/usuario_model');
+const Usuario = require('../models/usuario_model');
 const ruta = express.Router()
 
 
