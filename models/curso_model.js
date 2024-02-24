@@ -1,4 +1,5 @@
 const mongoose = require( 'mongoose');
+
     const cursoSchema = new mongoose.Schema({
     titulo: {
         type:String,

@@ -23,7 +23,7 @@ app.use('/api/usuarios', usuarios);
 app.use('/api/cursos', cursos);
 
 
-const port = process.env.PORT || 92;
+const port = process.env.PORT || 96;
 app.listen(port, () => {
     console.log('Api REST Ok, y ejecutándose...');
 })
