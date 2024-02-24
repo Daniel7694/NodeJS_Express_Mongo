@@ -6,7 +6,7 @@ const express = require('express');
 const mongoose = require ('mongoose');
 
 //Conexión a la base de daos mongodb
-mongoose.connect('mongodb://localhost:27017/local', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb://localhost:27017/usercoursesdb', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => console.log('Conectando a MongoDB...'))
 .catch(err => console.log('No se pudo conectar con MongoDB..', err));
 
@@ -23,7 +23,7 @@ app.use('/api/usuarios', usuarios);
 app.use('/api/cursos', cursos);
 
 
-const port = process.env.PORT || 85;
+const port = process.env.PORT || 92;
 app.listen(port, () => {
     console.log('Api REST Ok, y ejecutándose...');
 })
