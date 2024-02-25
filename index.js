@@ -1,5 +1,5 @@
 const usuarios = require ('./controllers/usuarios');
-const cursos = require ('./controllers/cursos');
+const cursos = require ('./controllers/cursos.js');
 
 
 const express = require('express');
