@@ -1,0 +1,16 @@
+const Usuario = require('../models/usuario_model');
+
+//Funcion asincronica para actualizar un objeto de tipo usuario
+async function actualizarUsuario(email,body){
+    let usuario = await Usuario.findOneAndUpdate({"email": email},{
+        $set: {
+            nombre: body.nombre,
+            password: body.password
+        }
+    }, {new: true});
+    return usuario;
+}
+
+module.exports = {
+    actualizarUsuario
+}

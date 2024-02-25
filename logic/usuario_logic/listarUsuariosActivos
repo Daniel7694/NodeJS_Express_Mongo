@@ -1,0 +1,11 @@
+const Usuario = require('../models/usuario_model');
+
+//Funcion asincronica para listar a todos los usuarios activos 
+async function listarUsuariosActivos(){
+    let usuarios = await Usuario.find({"estado": true});
+    return usuarios;
+}
+
+module.exports = {
+    listarUsuariosActivos
+}

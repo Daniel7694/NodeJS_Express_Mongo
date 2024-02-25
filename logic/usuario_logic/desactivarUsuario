@@ -1,0 +1,14 @@
+const Usuario = require('../models/usuario_model');
+
+//Funcion asincronica para inactivar un usuario 
+async function desactivarUsuario(email){
+    let usuario = await Usuario.findOneAndUpdate({"email": email}, {
+        $set: {
+            estado:false
+        }
+    }, {new: true});
+    return usuario;
+}
+module.exports = {
+    desactivarUsuario
+}

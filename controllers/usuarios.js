@@ -1,7 +1,7 @@
 const express = require('express');
-const Usuario = require('../models/usuario_model');
+const logic = require('../logic/usuario_logic')
 const ruta = express.Router()
-const Joi = require('@hapi/joi');
+
 
 //Endpoint de tipo GET para el recurso usuarios. Listar todos los usuarios 
 ruta.get('/', (req,res)=>{
@@ -16,23 +16,6 @@ ruta.get('/', (req,res)=>{
         )
     })
 });
-// Validaciones para el objeto usuario 
-const schema = Joi.object({
-    nombre: Joi.string()
-        .min(3)
-        .max(30)
-        .required()
-        .pattern(/^[A-Za-záéíúó ]{3,30}$/),
-    password: Joi.string()
-        .pattern(/^[a-zA-Z0-9]{3,30}$/),
-    email: Joi.string()
-        .email({minDomainSegments: 2,tlds: { allow: ['com', 'net', 'edu', 'co']}})
-});
-
-
-
-
-
 //Endpoint de tipo POST para el recurso usuarios 
 ruta.post('/',(req, res) => {
     let body = req.body;
@@ -57,28 +40,6 @@ ruta.post('/',(req, res) => {
     }
 })
 
-//Funcion asincronica para crear un objeto de tipo usuario
-async function crearUsuario(body){
-    let usuario = new Usuario({
-        email       :body.email,
-        nombre      :body.nombre,
-        password        :body.password
-    });
-    return await usuario.save();
-}
-
-
-
-//Funcion asincronica para actualizar un objeto de tipo usuario
-async function actualizarUsuario(email,body){
-    let usuario = await Usuario.findOneAndUpdate({"email": email},{
-        $set: {
-            nombre: body.nombre,
-            password: body.password
-        }
-    }, {new: true});
-    return usuario;
-}
 //Endpointde tipo DELETE para el recurso USUARIOS
 ruta.delete('/:email', (req, res) => {
     let resultado = desactivarUsuario(req.params.email);
@@ -112,20 +73,4 @@ ruta.put('/:email', (req, res) => {
         })
     }
 });
-
-//Funcion asincronica para inactivar un usuario 
-async function desactivarUsuario(email){
-    let usuario = await Usuario.findOneAndUpdate({"email": email}, {
-        $set: {
-            estado:false
-        }
-    }, {new: true});
-    return usuario;
-}
-
-//Funcion asincronica para listar a todos los usuarios activos 
-async function listarUsuariosActivos(){
-    let usuarios = await Usuario.find({"estado": true});
-    return usuarios;
-}
 module.exports = ruta;

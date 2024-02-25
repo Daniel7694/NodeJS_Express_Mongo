@@ -1,0 +1,15 @@
+const Usuario = require('../models/usuario_model');
+
+//Funcion asincronica para crear un objeto de tipo usuario
+async function crearUsuario(body){
+    let usuario = new Usuario({
+        email       :body.email,
+        nombre      :body.nombre,
+        password        :body.password
+    });
+    return await usuario.save();
+}
+
+module.exports = {
+    crearUsuario
+}

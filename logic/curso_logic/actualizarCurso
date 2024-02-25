@@ -11,4 +11,6 @@ async function actualizarCurso(id,body){
     return curso;
 }
 
-module.exports = actualizarCurso;
+module.exports = {
+    actualizarCurso
+}
