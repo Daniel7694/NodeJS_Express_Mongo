@@ -1,5 +1,13 @@
-const usuarios = require ('./controllers/usuarios.js');
-const cursos = require ('./controllers/cursos.js');
+const usuariosD = require ('./usuarios/DELETE');
+const usuariosG = require ('./usuarios/GET');
+const usuariosP = require ('./usuarios/POST');
+const usuariosPU = require ('./usuarios/PUT');
+
+
+const cursosD = require ('./cursos/DELETE');
+const cursosG = require ('./cursos/GET');
+const cursosP = require ('./cursos/POST');
+const cursosPU = require ('./cursos/PUT');
 
 
 const express = require('express');
@@ -19,8 +27,16 @@ app.use(express.urlencoded({extended:true}));
 
 //end points (recursos)
 
-app.use('/api/usuarios', usuarios);
-app.use('/api/cursos', cursos);
+app.use('/api/usuarios/DELETE', usuariosD);
+app.use('/api/usuarios/GET', usuariosG);
+app.use('/api/usuarios/POST', usuariosP);
+app.use('/api/usuarios/PUT', usuariosPU);
+
+
+app.use('/api/cursos/DELETE', cursosD);
+app.use('/api/cursos/GET', cursosG);
+app.use('/api/cursos/POST', cursosP);
+app.use('/api/cursos/PUT', cursosPU);
 
 
 const port = process.env.PORT || 96;

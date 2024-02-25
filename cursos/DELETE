@@ -1,12 +1,12 @@
 const express = require('express');
-const logic = require('../logic/curso_logic')
+const logic = require('../curso_logic/desactivarCurso')
 const ruta = express.Router()
 
 //Endpoint de tipo PUT para el recurso CURSOS
-ruta.put('/:id', (req, res) => {
-    let resultado = actualizarCurso(req.params.id, req.params.body);
+ruta.delete('/:id', (req, res) => {
+    let resultado = curso_logic.desactivarCurso(req.params.id);
     resultado.then(curso => {
-        res.json(curso)
+        res.json(curso);
     }).catch(err => {
         res.status(400).json(err)
     })

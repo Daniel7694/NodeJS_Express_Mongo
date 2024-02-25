@@ -1,14 +1,14 @@
 const express = require('express');
-const logic = require('../logic/usuario_logic')
+const logic = require('../usuario_logic/crearUsuario')
 const ruta = express.Router()
 
 //Endpoint de tipo POST para el recurso usuarios 
 ruta.post('/',(req, res) => {
     let body = req.body;
 
-    const {error, value} = schema.validate({nombre: nombre.body, email: email.body});
+    const {error, value} = usuario_logic.schema.validate({nombre: nombre.body, email: email.body});
     if(!error){
-        let resultado = crearUsuario(body);
+        let resultado = usuario_logic.crearUsuario(body);
         
         resultado.then( user => {
             res.json({

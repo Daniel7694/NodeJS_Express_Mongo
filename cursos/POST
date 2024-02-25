@@ -1,10 +1,10 @@
 const express = require('express');
-const logic = require('../logic/curso_logic')
+const logic = require('../curso_logic/crearCurso')
 const ruta = express.Router()
 
 //Endpoint de tipo POST para el recurso CURSOS
 ruta.post('/', (req, res) => {
-    let resultado = crearCurso(req.body);
+    let resultado = curso_logic.crearCurso(req.body);
 
     resultado.then(curso => {
         res.json({

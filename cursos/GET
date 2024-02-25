@@ -1,10 +1,10 @@
 const express = require('express');
-const logic = require('../logic/curso_logic')
+const logic = require('../curso_logic/listarCursosActivos')
 const ruta = express.Router()
 
 //Endpoint de tipo GET para el recurso CURSOS
 ruta.get('/', (req,res)=>{
-    let resultado = listarCursosActivos();
+    let resultado = curso_logic.listarCursosActivos();
     resultado.then(cursos => {
         res.json(cursos);
     }).catch(err => {
