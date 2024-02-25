@@ -1,0 +1,12 @@
+const Curso = require('../models/curso_model');
+
+//Funcion asincronica para crear cursos 
+//Funcion asincronica para listar a los cursos activos 
+async function listarCursosActivos(){
+    let cursos = await Curso.find({"estado": true});
+    return cursos
+}
+
+module.exports = {
+    listarCursosActivos
+}

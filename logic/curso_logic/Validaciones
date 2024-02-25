@@ -1,0 +1,23 @@
+const Joi = require('@hapi/joi');
+
+
+// Validaciones para el objeto curso 
+const schema = Joi.object({
+    titulo: Joi.string()
+        .min(3)
+        .max(30)
+        .required()
+        .pattern(/^[A-Za-záéíúó ]{3,30}$/),
+    descripcion: Joi.string()
+        .min(3)
+        .max(100)
+        .required()
+        .pattern(/^[a-zA-Z0-9]{3,100}$/),
+    alumnos: Joi.string()
+    .required()
+    .pattern(/^[0-9]{3,30}$/),
+    calificacion: Joi.string()
+    .required()
+    .pattern(/^[0-9]{3,30}$/)
+});
+

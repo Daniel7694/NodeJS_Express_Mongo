@@ -1,0 +1,14 @@
+const Curso = require('../models/curso_model');
+
+//Funcion asincronica para actualizar cursos 
+async function actualizarCurso(id,body){
+    let curso = await Curso.findOneAndUpdate(id, {
+        $set: {
+            titulo: body.titulo,
+            descripcion: body.descripcion      
+        }
+    },{new: true});
+    return curso;
+}
+
+module.exports = actualizarCurso;

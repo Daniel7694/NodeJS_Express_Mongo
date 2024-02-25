@@ -1,0 +1,15 @@
+const Curso = require('../models/curso_model');
+
+//Funcion asincronica para inhabilitar cursos
+async function desactivarCurso(id){
+    let curso = await Curso.findByIdAndUpdate(id, {
+        $set: {
+            estado: false
+        }
+    }, {new: true});
+    return curso;
+} 
+
+module.exports = {
+    desactivarCurso
+}
