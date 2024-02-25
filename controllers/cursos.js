@@ -1,6 +1,27 @@
 const express = require('express');
 const Curso = require('../models/curso_model');
 const ruta = express.Router()
+const Joi = require('@hapi/joi');
+
+// Validaciones para el objeto usuario 
+const schema = Joi.object({
+    titulo: Joi.string()
+        .min(3)
+        .max(30)
+        .required()
+        .pattern(/^[A-Za-záéíúó ]{3,30}$/),
+    descripcion: Joi.string()
+        .min(3)
+        .max(100)
+        .required()
+        .pattern(/^[a-zA-Z0-9]{3,100}$/),
+    alumnos: Joi.string()
+    .required()
+    .pattern(/^[0-9]{3,30}$/),
+    calificacion: Joi.string()
+    .required()
+    .pattern(/^[0-9]{3,30}$/)
+});
 
 ruta.get('/', (req,res)=>{
     let resultado = listarCursosActivos();
@@ -10,8 +31,6 @@ ruta.get('/', (req,res)=>{
         res.status(400).json(err);
     })
 });
-
-
 
 //Endpoint de tipo POST para el recurso CURSOS
 ruta.post('/', (req, res) => {
