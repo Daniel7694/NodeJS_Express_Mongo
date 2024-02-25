@@ -1,4 +1,4 @@
-const usuarios = require ('./controllers/usuarios');
+const usuarios = require ('./controllers/usuarios.js');
 const cursos = require ('./controllers/cursos.js');
 
 
